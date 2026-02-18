@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+
+<title>Robiul</title>
+
+<style>
+body{
+    background-color:rgb(105, 101, 101);
+    margin:0;
+}
+
+.box1{
+    margin:auto;
+    width:90%;
+    height:300px;
+    border:2px solid black;
+    background-color:black;
+    position:relative;
+}
+
+/* Player */
+.player{
+    position:absolute;
+    bottom:0;
+    left:50px;
+    color:white;
+    font-size:50px;
+}
+
+/* Jump Animation */
+.jump{
+    animation: jump 0.5s ease;
+}
+
+@keyframes jump{
+    0%{ bottom:0; }
+    50%{ bottom:120px; }
+    100%{ bottom:0; }
+   
+}
+
+#count{
+    color:white;
+    padding:10px;
+}
+.fa-tree{
+    font-size:25px;
+    color:green;
+    margin-left:90%;
+    margin-top:205px;
+     animation: move 5s linear infinite; 
+     position: absolute;
+}
+
+@keyframes move{ 
+    0%{ right:0; }
+    100%{ right:100%; } 
+   
+}
+
+.fa-bomb{
+    font-size:20px;color:rgb(184, 146, 76); 
+    margin-left:90%; 
+    margin-top:215px;
+    position: absolute;
+    animation: come 6s linear infinite;
+}
+@keyframes come{
+    0%{right:0;}  
+    100%{right:100%;}
+}
+
+#gameOver{
+    position: absolute;
+   left: 45%;
+    color:rgb(201, 74, 74);
+    display:none;
+    font-size: 60px;
+}
+.slider{
+    width:300px;
+    height:25%;
+    margin:auto;
+    overflow:hidden;
+   
+}
+
+.sliders{
+    display:flex;
+    width:300%;
+    transition:0.5s;
+}
+
+.sliders img{
+    width:300px;
+    height:25%;
+    object-fit:cover;
+}
+a{
+    text-decoration: none;
+    position: relative;
+   bottom:20px;
+ 
+}
+#restart{
+   
+    display:block;
+   
+    font-size:40px;
+    cursor:pointer;
+    color:white;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body> 
+
+<div class="box1">
+    <p id="count">count: 0</p>
+    <i class="fa-solid fa-person-running player" id="player"></i>
+    <i class="fa-solid fa-tree" id="tree"></i>
+    <i class="fa-solid fa-bomb" id="bomb"></i>
+  
+    <h1 id="gameOver">Game Over 
+   <a href=""><i class="fa-solid fa-arrow-rotate-right" id="restart"></i></a>
+
+    </h1>
+   
+</div>
+<br>
+<div class="slider">
+<div class="sliders">
+<img src="roket.png">
+<img src="bkash.png">
+<img src="nagad.png">
+</div>
+
+</div>
+<script>
+
+    
+
+let player = document.getElementById("player");
+let tree =document.getElementById("tree");
+let bomb =document.getElementById("bomb");
+let gameOverText =document.getElementById("gameOver");
+let count = 0;
+let gameOver = false;
+
+function jump(){
+    if(gameOver) return; // যদি game over হয়, আর jump হবে না
+    if(!player.classList.contains("jump")){
+        player.classList.add("jump");
+        count++;
+        document.getElementById("count").innerHTML = "count: " + count;
+
+        setTimeout(()=>{
+            player.classList.remove("jump");
+        }, 500);
+    }
+}
+
+// Keyboard press
+document.addEventListener("keydown", function(e){
+    if(e.code === "Space" || e.code === "ArrowUp"){
+        jump();
+    }
+});
+
+// Mobile touch
+document.addEventListener("touchstart", function(){
+    jump();
+});
+
+let checkDead = setInterval(function(){
+
+    let playerRect = player.getBoundingClientRect();  // এটা যোগ করো
+    let treeRect = tree.getBoundingClientRect();
+    let bombRect = bomb.getBoundingClientRect();
+
+    if(
+        ( 
+            playerRect.right > treeRect.left &&
+            playerRect.left < treeRect.right &&
+            playerRect.bottom > treeRect.top &&
+            playerRect.top < treeRect.bottom
+        )
+        ||
+        (
+            playerRect.right > bombRect.left &&
+            playerRect.left < bombRect.right &&
+            playerRect.bottom > bombRect.top &&
+            playerRect.top < bombRect.bottom
+        )
+    ){
+
+        tree.style.animation = "none";
+        bomb.style.animation = "none";  // display না, animation বন্ধ করো
+
+        gameOverText.style.display = "block";
+        clearInterval(checkDead);
+        gameOver = true;
+    }
+
+},10);
+//slider
+let slide = document.querySelector(".sliders");
+let index = 0;
+
+setInterval(()=>{
+    index++;
+    if(index > 2){
+        index = 0;
+    }
+    slide.style.transform = "translateX(" + (-300 * index) + "px)";
+},2000);
+</script>
+</body>
+</html>
+
+
