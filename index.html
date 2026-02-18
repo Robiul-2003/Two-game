@@ -15,12 +15,12 @@ body{
 
 .box1{
     margin:auto;
-    width:90%;
-    height:300px;
+    width:100%;
+    height:220px;
     border:2px solid black;
     background-color:black;
     position:relative;
-}
+} 
 
 /* Player */
 .player{
@@ -51,8 +51,8 @@ body{
     font-size:25px;
     color:green;
     margin-left:90%;
-    margin-top:205px;
-     animation: move 5s linear infinite; 
+    margin-top:130px;
+     animation: move 2s linear infinite; 
      position: absolute;
 }
 
@@ -65,9 +65,9 @@ body{
 .fa-bomb{
     font-size:20px;color:rgb(184, 146, 76); 
     margin-left:90%; 
-    margin-top:215px;
-    position: absolute;
-    animation: come 6s linear infinite;
+    margin-top:130px;
+    position: absolute; 
+    animation: come 7s linear infinite;
 }
 @keyframes come{
     0%{right:0;}  
@@ -76,17 +76,17 @@ body{
 
 #gameOver{
     position: absolute;
-   left: 45%;
+   margin-left:42%;
     color:rgb(201, 74, 74);
     display:none;
-    font-size: 60px;
+    font-size:22px;
 }
 .slider{
     width:300px;
     height:25%;
     margin:auto;
     overflow:hidden;
-   
+    display:none;
 }
 
 .sliders{
@@ -103,14 +103,13 @@ body{
 a{
     text-decoration: none;
     position: relative;
-   bottom:20px;
+   
  
 }
 #restart{
-   
+   margin-left:40px;
+    font-size:28px;
     display:block;
-   
-    font-size:40px;
     cursor:pointer;
     color:white;
     text-decoration: none;
@@ -128,7 +127,6 @@ a{
   
     <h1 id="gameOver">Game Over 
    <a href=""><i class="fa-solid fa-arrow-rotate-right" id="restart"></i></a>
-
     </h1>
    
 </div>
