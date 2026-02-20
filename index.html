@@ -85,7 +85,7 @@ body{
 }
 .slider{
    width:300px;
-    height:150px;
+    height:200px;
     margin:auto;
     overflow:hidden;
   
@@ -99,8 +99,8 @@ body{
 
 .sliders img{
     width:300px;
-    height:150px;
-    object-fit:cover;
+    height:200px;
+    object-fit:contain;
 }
 a{
     text-decoration: none;
@@ -145,16 +145,17 @@ a{
 <br>
 <div class="slider">
 <div class="sliders">
-<img src="roket.png">
-<img src="bkash.png">
-<img src="nagad.png">
+<a href="https://www.dutchbanglabank.com/"><img src="roket.png"></a>
+<a href="https://www.bkash.com/en"><img src="bkash.png"></a>
+<a href="https://nagad.com.bd/"><img src="nagad.png"></a>
 </div>
 
 </div>
+<audio id="clickSound" src="click.mp3"></audio>
 <script>
 
     
-
+let clickSound = document.getElementById("clickSound");
 let player = document.getElementById("player");
 let tree =document.getElementById("tree");
 let bomb =document.getElementById("bomb");
@@ -165,7 +166,9 @@ let gameOver = false;
 function jump(){
     if(gameOver) return; // যদি game over হয়, আর jump হবে না
     if(!player.classList.contains("jump")){
-        player.classList.add("jump");
+        clickSound.currentTime = 0;  // sound repeat এর জন্য
+        clickSound.play();
+        player.classList.add("jump");        
         count++;
         document.getElementById("count").innerHTML = "count: " + count;
        if(count ==10){

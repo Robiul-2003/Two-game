@@ -7,61 +7,31 @@
 </head>
 <style>
     body{
-        background-color: rgb(109, 101, 101);
+        background-color: black;
+    }
+    #one{ position:absolute;
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        background-color:green;top:0px;
+    }
+     #two{position: relative;
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        background-color:rgb(226, 129, 38);
     }
 </style>
 <body>
-    <a href="ads.html" id="adsLink" style="display:none;"> Ads</a>
-    <p id="count">0</p>
-    <button onclick="demo()">click me</button>
-
-
-    <script>
-   var count =0;
-
-   
-   function demo(){
-    count = count +1;
- document.getElementById("count").innerHTML=count;
-
- if(count == 10){
-    document.getElementById("adsLink").style.display ="block";
- }
-   }
-  
-    </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Counter</title>
-    <style>
-        body{
-            background-color: rgb(109, 101, 101);
-        }
-    </style>
-</head>
-
-<body>
-
-<a href="ads.html" id="adsLink" style="display:none;">Ads</a>
-
-<p id="count">0</p>
-<button onclick="demo()">Click me</button>
-
+   <p id="one"></p>
+   <p id="two"></p>
+<br>
+<button onclick="functon()">click </button>
 <script>
-var count = 0;
-
-function demo(){
-    count = count + 1;
-    document.getElementById("count").innerHTML = count;
-
-    if(count == 10){
-        document.getElementById("adsLink").style.display = "block";
-    }
-}
+  function functon(){
+    document.getElementById("one").innerHTML="one";
+  }
 </script>
-
 </body>
 </html>
+
