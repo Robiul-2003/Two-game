@@ -151,11 +151,13 @@ a{
 </div>
 
 </div>
-<audio id="clickSound" src="click.mp3"></audio>
+<audio id="clickSound" src="freesound_community-click-1-94229.mp3"></audio>
+<audio id="jumpclick" src="soundreality-re-stop-dj-fx-344126.mp3"></audio>
 <script>
 
-    
+let jumpclick = document.getElementById("jumpclick"); 
 let clickSound = document.getElementById("clickSound");
+
 let player = document.getElementById("player");
 let tree =document.getElementById("tree");
 let bomb =document.getElementById("bomb");
@@ -220,6 +222,12 @@ let checkDead = setInterval(function(){
         gameOverText.style.display = "block";
         clearInterval(checkDead);
         gameOver = true;
+        // Jump sound
+          clickSound.currentTime = 0;
+          clickSound.play();
+
+        jumpclick.currentTime =0;
+        jumpclick.play();
     }
 
 },10);
